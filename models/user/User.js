@@ -265,7 +265,8 @@ const UserSchema = new Schema(
     ],
     newshopPayment:{
       type:Boolean
-    }
+    },
+    
   },
   { timestamp: true }
 );

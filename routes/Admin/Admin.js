@@ -31,6 +31,8 @@ router.post("/user/newUser/:id/decline/save",adminCtrl.declineSaver)
 router.get("/usersthatsaves/savings/activeusers",adminCtrl.savingsIsActive)
 
 router.get("/users/active/investors",adminCtrl.AllInvestorsActive)
+router.get("/users/active/investors/withref",adminCtrl.InvestorsWithRefEarning)
+
 router.get("/users/all/investors",adminCtrl.AllInvestors)
 router.get("/users/declined/investors",adminCtrl.AllInvestorsdeclined)
 
@@ -51,6 +53,7 @@ router.get("/users/all/declined/save",adminCtrl.AllDeclinedSave)
 
 
 router.post('/users/payinvestment/:id/payuser',requireSignin,adminMiddleware,adminCtrl.payActiveInvestor)
+router.post('/users/payinvestmentref/:id/payuser',requireSignin,adminMiddleware,adminCtrl.payActiveInvestorRef)
 
 router.post("/user/verifyloan/repayment/:id",adminCtrl.activateNewLoanRepay)
 module.exports = router;

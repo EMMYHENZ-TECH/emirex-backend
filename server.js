@@ -18,7 +18,7 @@ connectmyDB=()=>{
         useCreateIndex:true,
     })
     .then(res=>{
-        console.log("Connected to Db")
+        console.log("Connected to Db" + DB)
     })
     .catch(err=>{
         console.log("Error connecting to Db")
@@ -44,6 +44,8 @@ app.use("/api/v1/shop/",require("./routes/Coupon"))
 app.use("/api/v1/shop/",require("./routes/checkout"))
 app.use("/api/v1/shop/",require("./routes/order"))
 app.use("/api/v1/admin/",require("./routes/Admin/Admin"))
+app.use("/api/v1/nip/",require("./routes/nip/"))
+app.use("/api/v1/task",require("./routes/nip/task"))
 const APPPORT = process.env.PORT||PORT
 app.listen(APPPORT,()=>{
     console.log(`server started on ${PORT}`)

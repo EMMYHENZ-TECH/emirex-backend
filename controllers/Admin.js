@@ -133,6 +133,14 @@ exports.AllInvestorsActive = (req, res) => {
     res.send(response);
   });
 };
+exports.InvestorsWithRefEarning = (req, res) => {
+  console.log('got her')
+  User.find({ activeplan: true }).then((users) => {
+    users.map((user)=>{
+      console.log(user)
+    })
+  });
+};
 exports.AllInvestorsdeclined = (req, res) => {
   User.find({ declinedInvestment: "declined" }).then((response) => {
     res.send(response);
@@ -690,6 +698,25 @@ exports.payActiveInvestor = (req, res) => {
     })
   });
 };
+
+exports.payActiveInvestorRef = (req, res) => {
+  User.findOne({ _id: req.body.userId }).then((response) => {
+    if (parseInt(response.referralsEarning) > 0) {
+      response.referralsEarning =0
+      response.save() 
+      .then(()=>{
+        res.status(200).json({
+          message:`Successfully payed ${response.fullname}`
+        })
+      })
+    }else{
+      res.status(200).json({
+        message:`Nothing To Pay ${response.fullname}`
+      })
+    }
+  });
+};
+
 
 exports.activateNewLoanRepay = (req, res) => {
   Admin.findOne({ _id: req.params.id }).then((resp) => {
